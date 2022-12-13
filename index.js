@@ -17,6 +17,8 @@ app.listen(PORT, () => console.log(`🚀 El servidor está corriendo en el puert
 app.post("/hook", (req, res) => {
   console.log(req.body);
   // Asume que dentro del home existe un directorio llamado web que contiene un repositorio
+  // Se pueden cambiar los comandos para aprovechar el webhook con otros propósitos, pero
+  // sin permitir que provengan del usuario directamente por cuestiones de seguridad.
   exec('cd ~/web && git pull');
   res.status(200).end();
 });
