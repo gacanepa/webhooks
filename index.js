@@ -1,7 +1,10 @@
 // Instrucciones para probar un webhook paso a paso
 
+// 0. Agregar child_process para ejecutar procesos del SO con Node
+const { exec } = require("child_process");
+
 // 1. Incluir express
-const express = require("express")
+const express = require("express");
 
 // 2. Crear la app express y setear el puerto
 const app = express();
@@ -13,5 +16,7 @@ app.listen(PORT, () => console.log(`🚀 El servidor está corriendo en el puert
 
 app.post("/hook", (req, res) => {
   console.log(req.body);
+  // Asume que dentro del home existe un directorio llamado web que contiene un repositorio
+  exec('cd ~/web && git pull');
   res.status(200).end();
 });
